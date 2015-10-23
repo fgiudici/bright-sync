@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# Action script that will respawn bsync daemon on resume
+
+case "${1}" in
+	resume|thaw)
+		/sbin/bsync
+		;;
+	*)
+		# do nothing
+		;;
+esac
+

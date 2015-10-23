@@ -1,0 +1,34 @@
+-- BRIGHTNESS SYNC --
+author: Francesco Giudici <francesco.giudici@gmail.com>
+
+
+-- INTRO --
+This software has been written in order to synchronize Sony Y series laptop
+brightness raw control with the one updated by gnome.
+It could be used for other laptop models too, it should work if these
+conditions are true:
+1)	when you try to change brightness, file:
+	/sys/class/backlight/acpi_video1/brightness
+	is changed, but nothing happens to your screen.
+2)	you have a raw brightness control, e.g., something like:
+	/sys/class/backlight/intel_backlight/brightness
+	and changing its value actually changes your screen brightness.
+
+It works simply monitoring changes on the input directory, and when a change
+is detected, output directory is updated accordingly.
+
+
+-- COMPILING --
+You should just issue a "make" on the main directory in order to compile
+Brightness Sync. You will find the binary "bsync" in the "bin" directory.
+
+
+-- INSTALLING --
+In order to let bsync start automatically on your system at boot, add it
+to your rc.local file (/etc/rc.local) before the "exit 0" statement.
+
+In order to let it work after standby or hibernation, you need to add a file
+under your /etc/pm/sleep.d/ directory (root access required). You will find a
+sample script file under the "script" directory (remember to change the path
+of the bsync binary with the one where you have put yours).
+
